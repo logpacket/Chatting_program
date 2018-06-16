@@ -7,40 +7,40 @@ import java.awt.event.WindowListener;
 
 public class Client_GUI extends JFrame {
     // Login GUI Field
-    private JFrame Login_GUI = new JFrame();
-    private JTextField IP_tf = new JTextField();
-    private JTextField Login_ID_tf = new JTextField();
-    private JPasswordField Loginpf = new JPasswordField();
-    private JButton login_btn = new JButton("\uC811\uC18D");
-    private JButton go_rg = new JButton("\uD68C\uC6D0\uAC00\uC785");
+    public JFrame Login_GUI = new JFrame();
+    public JTextField IP_tf = new JTextField();
+    public JTextField Login_ID_tf = new JTextField();
+    public JPasswordField Loginpf = new JPasswordField();
+    public JButton login_btn = new JButton("\uC811\uC18D");
+    public JButton go_rg = new JButton("\uD68C\uC6D0\uAC00\uC785");
 
     // Friends&Room GUI Field
-    private JFrame F_R_GUI = new JFrame();
-    private JPanel F_RPane = new JPanel();
-    private JList fr_list = new JList();
-    private JButton invite_btn = new JButton("친구 초대");
-    private JButton create_room_btn = new JButton("방 만들기");
-    private JButton join_room_btn = new JButton("방 참가");
-    private JList Room_list = new JList();
+    public JFrame F_R_GUI = new JFrame();
+    public JPanel F_RPane = new JPanel();
+    public JList<String> fr_list = new JList<>();
+    public JButton invite_btn = new JButton("친구 초대");
+    public JButton create_room_btn = new JButton("방 만들기");
+    public JButton join_room_btn = new JButton("방 참가");
+    public JList<String> Room_list = new JList<>();
 
     // chat GUI Field
-    private JFrame Chat_GUI = new JFrame();
-    private JPanel ChatPane = new JPanel();
-    private JTextField Chat_tf = new JTextField();
-    private JButton send_btn = new JButton("전송");
-    private JList contact_user_list = new JList();
-    private JTextArea Chatting_area = new JTextArea();
-    private JScrollPane scrollPane = new JScrollPane();
-    private JScrollPane scrollPane_1 = new JScrollPane();
+    public JFrame Chat_GUI = new JFrame();
+    public JPanel ChatPane = new JPanel();
+    public JTextField Chat_tf = new JTextField();
+    public JButton send_btn = new JButton("전송");
+    public JList<String> contact_user_list = new JList<>();
+    public JTextArea Chatting_area = new JTextArea();
+    public JScrollPane scrollPane = new JScrollPane();
+    public JScrollPane scrollPane_1 = new JScrollPane();
 
     // Register GUI Field
-    private JFrame Rg_GUI = new JFrame();
-    private JPanel rg_Pane = new JPanel();
-    private JTextField rg_ID_tf = new JTextField();
-    private JPasswordField rg_pf_1 = new JPasswordField();
-    private JTextField rg_nickname_tf = new JTextField();
-    private JTextField rg_server_IP = new JTextField();
-    private JButton register_btn = new JButton("회원가입");
+    public JFrame Rg_GUI = new JFrame();
+    public JPanel rg_Pane = new JPanel();
+    public JTextField rg_ID_tf = new JTextField();
+    public JPasswordField rg_pf_1 = new JPasswordField();
+    public JTextField rg_nickname_tf = new JTextField();
+    public JTextField rg_server_IP = new JTextField();
+    public JButton register_btn = new JButton("회원가입");
 
     // GUI설정 메소드
     public void Login_init() {
@@ -114,9 +114,8 @@ public class Client_GUI extends JFrame {
         scrollPane_1.setViewportView(Room_list);
         F_R_GUI.setVisible(false);
     }
-    private void Chat_init(String Title, WindowListener Listener) {
+    public void Chat_init(String Title) {
         Chat_GUI.setTitle(Title);
-        Chat_GUI.addWindowListener(Listener);
         Chat_GUI.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         Chat_GUI.setBounds(100, 100, 486, 523);
         ChatPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -1,28 +1,11 @@
 package Client;
 
-import javax.swing.*;
 import java.awt.event.*;
-import Interface.Network;
 
-public class Client extends Client_GUI implements Network, Runnable,ActionListener, WindowListener, KeyListener{
+public class Client extends Client_GUI implements Runnable,ActionListener, WindowListener, KeyListener{
     public static void main(String args[]){
 
     }
-
-    @Override
-    public void in_message(String message){
-
-    };
-    @Override
-    public void send_message(String message){
-
-    }
-
-    @Override
-    public void Connection() {
-
-    }
-
     @Override
     public void run() {
 
