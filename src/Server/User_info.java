@@ -75,7 +75,7 @@ public class User_info extends AbstractNetwork implements Runnable{
                 }
                 else send_message("JoinFail/sorry");
                 break;
-            case "connect": //접속 성공시
+            case "connect": //접속 성공
                 send_message("connect/ok");
                 break;
             case "register": //회원가입시

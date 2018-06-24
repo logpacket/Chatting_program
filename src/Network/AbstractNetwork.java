@@ -2,6 +2,8 @@ package Network;
 
 import java.io.*;
 import java.net.Socket;
+import java.security.*;
+
 public abstract class AbstractNetwork{
     protected Socket socket;
     public String IP;
@@ -10,6 +12,10 @@ public abstract class AbstractNetwork{
     protected OutputStream os;
     protected DataInputStream dis;
     protected DataOutputStream dos;
+    protected KeyPair MyKey;
+    protected PublicKey recvKey;
+    protected PrivateKey privateKey;
+    protected PublicKey publicKey;
     public abstract void in_message(String message);
     public abstract void session();
     public abstract void IOError(IOException e);
