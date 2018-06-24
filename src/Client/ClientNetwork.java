@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-public class ClientNetwork extends AbstractNetwork implements Runnable{
+public class ClientNetwork extends AbstractNetwork{
     private Client_GUI GUI;
-    private String ID;
-    private String Nickname;
-    private String Password;
+    public String ID;
+    public String Password;
+    public String Curent_Room_Name="";
     private Vector<String> fr_List = new Vector<>();
     private Vector<String> room_List = new Vector<>();
     private Vector<String> Contact_user_list = new Vector<>();
@@ -32,10 +32,9 @@ public class ClientNetwork extends AbstractNetwork implements Runnable{
                 System.out.println("접속 성공");
                 break;
             case "login_ok": // 로그인 성공시
-                Nickname = Message;
                 GUI.Login_GUI.setVisible(false);
                 GUI.F_R_GUI.setVisible(true);
-                fr_List.add(Nickname);
+                fr_List.add(ID);
                 GUI.fr_list.setListData(fr_List);
                 break;
             case "login_fail": // 로그인 실패시
@@ -49,6 +48,7 @@ public class ClientNetwork extends AbstractNetwork implements Runnable{
                 JOptionPane.showMessageDialog(null, "이미 똑같은 ID가 있습니다", "알림", JOptionPane.ERROR_MESSAGE);
                 break;
             case "JoinRoom": // 방접속 성공시
+                Curent_Room_Name = Message;
                 Contact_user_list.removeAllElements();
                 GUI.Chatting_area.setText("");
                 GUI.Chat_init(Message);// 채팅창 구성 메소드
@@ -91,7 +91,7 @@ public class ClientNetwork extends AbstractNetwork implements Runnable{
                 room_List.remove(Message);
                 GUI.Room_list.setListData(room_List);
                 break;
-            case "Invite": // 초대를 받았을시
+            case "invite": // 초대를 받았을시
                 int ask = JOptionPane.showConfirmDialog(null, "채팅방에 초대를 받았습니다 수락하시겠습니까?(현재채팅방에선 나가게 됩니다)", Message + "로부터",
                         JOptionPane.YES_NO_OPTION);
                 if (ask == JOptionPane.YES_OPTION) {
@@ -118,34 +118,34 @@ public class ClientNetwork extends AbstractNetwork implements Runnable{
     @Override
     public void session() {
         Connect();
-        send_message("connect/ok");Thread th = new Thread(this);
+        send_message("connect/ok");
+        Runnable r = () -> {
+            while (true) {
+                try {
+                    String msg = dis.readUTF();
+                    System.out.println("서버로부터 수신된 메세지" + msg);
+                    in_message(msg);
+                } catch (IOException e) {
+                    try {
+                        os.close();
+                        is.close();
+                        dos.close();
+                        dis.close();
+                        socket.close();
+                        JOptionPane.showMessageDialog(null, "서버와의 접속 끊어짐", "알림", JOptionPane.ERROR_MESSAGE);
+                    } catch (IOException e1) {
+                        JOptionPane.showMessageDialog(null, "서버와의 접속이 정상적으로 끊어지지 않았습니다", "알림", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                }
+            }
+        };
+        Thread th = new Thread(r);
         th.start();
     }
 
     @Override
     public void IOError(IOException e) {
         JOptionPane.showMessageDialog(null, "연결 실패\n"+e, "알림", JOptionPane.ERROR_MESSAGE);
-    }
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                String msg = dis.readUTF();
-                System.out.println("서버로부터 수신된 메세지" + msg);
-                in_message(msg);
-            } catch (IOException e) {
-                try {
-                    os.close();
-                    is.close();
-                    dos.close();
-                    dis.close();
-                    socket.close();
-                    JOptionPane.showMessageDialog(null, "서버와의 접속 끊어짐", "알림", JOptionPane.ERROR_MESSAGE);
-                } catch (IOException e1) {
-                    JOptionPane.showMessageDialog(null, "서버와의 접속이 정상적으로 끊어지지 않았습니다", "알림", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            }
-        }
     }
 }

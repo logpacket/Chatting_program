@@ -2,15 +2,17 @@ package Server;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-class Server_GUI extends JFrame {
+class Server_GUI extends JFrame{
     private JPanel contentPane = new JPanel();
-    private JTextArea textArea = new JTextArea();
-    private JButton server_launch_btn = new JButton("서버 실행");
-    private JButton server_stop_btn = new JButton("서버 중지");
+    public static JTextArea textArea = new JTextArea();
+    JButton server_launch_btn = new JButton("서버 실행");
+    JButton server_stop_btn = new JButton("서버 중지");
 
-
-    private void init() {// 화면구성
+    void init() {// 화면구성
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 325, 377);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

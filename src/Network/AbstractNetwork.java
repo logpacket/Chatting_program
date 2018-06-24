@@ -1,11 +1,10 @@
 package Network;
 
-import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 public abstract class AbstractNetwork{
     protected Socket socket;
-    private String IP;
+    public String IP;
     private static final int port = 810;
     protected InputStream is;
     protected OutputStream os;
@@ -14,25 +13,22 @@ public abstract class AbstractNetwork{
     public abstract void in_message(String message);
     public abstract void session();
     public abstract void IOError(IOException e);
-    public void Connect(){
+    protected void Connect(){
         try{
             socket = new Socket(IP,port);
-            if(socket != null){
-                setStream();
-                session();
-            }
+            setStream();
         }catch(IOException e){
             IOError(e);
         }
     }
-    protected void send_message(String message){
+    public void send_message(String message){
         try {
             dos.writeUTF(message);
         } catch (IOException e) {
             IOError(e);
         }
     }
-    private void setStream(){
+    protected void setStream(){
         try{
             is = socket.getInputStream();
             dis = new DataInputStream(is);
@@ -42,8 +38,4 @@ public abstract class AbstractNetwork{
             IOError(e);
         }
     }
-    protected void setIP(String ip){
-        this.IP = ip;
-    }
-
 }

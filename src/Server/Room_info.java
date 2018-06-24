@@ -1,30 +1,25 @@
 package Server;
-
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class Room_info {
-    private String Room_name = "";
-    private ArrayList <User_info> Room_User_vc = new ArrayList<>();
-    private String Room_Password = "";
+    public String Room_name = "";
+    public Map<String,User_info> Room_User_List= new LinkedHashMap<>();
+    public String Room_Password = "";
 
-    Room_info(String str, User_info u, String Password) {
-        this.Room_name = str;
+    Room_info(String name, User_info u, String Password) {
+        this.Room_name = name;
         this.Room_Password = Password;
+        Add_User(u);
     }
 
     public void BroadCast_Room(String str) {
-        for (User_info u:Room_User_vc) {
-            u.send_message(str);
-        }
-    }
-    public String getRoom_name(){
-        return this.Room_name;
+        for(Map.Entry<String,User_info> u : Room_User_List.entrySet())
+            u.getValue().send_message(str);
     }
 
-    public void Add_User(User_info u, String room_Password) {
-        if(room_Password.equals(this.Room_Password)) {
-            this.Room_User_vc.add(u);
-        }
+    public void Add_User(User_info u) {
+        this.Room_User_List.put(u.ID,u);
     }
 }
 

@@ -3,47 +3,45 @@ package Client;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.WindowListener;
 
 public class Client_GUI extends JFrame {
     // Login GUI Field
     public JFrame Login_GUI = new JFrame();
-    public JTextField IP_tf = new JTextField();
-    public JTextField Login_ID_tf = new JTextField();
-    public JPasswordField Loginpf = new JPasswordField();
-    public JButton login_btn = new JButton("\uC811\uC18D");
-    public JButton go_rg = new JButton("\uD68C\uC6D0\uAC00\uC785");
+    JTextField IP_tf = new JTextField();
+    JTextField Login_ID_tf = new JTextField();
+    JPasswordField Loginpf = new JPasswordField();
+    JButton login_btn = new JButton("\uC811\uC18D");
+    JButton go_rg = new JButton("\uD68C\uC6D0\uAC00\uC785");
 
     // Friends&Room GUI Field
     public JFrame F_R_GUI = new JFrame();
-    public JPanel F_RPane = new JPanel();
+    JPanel F_RPane = new JPanel();
     public JList<String> fr_list = new JList<>();
-    public JButton invite_btn = new JButton("친구 초대");
-    public JButton create_room_btn = new JButton("방 만들기");
-    public JButton join_room_btn = new JButton("방 참가");
+    JButton invite_btn = new JButton("친구 초대");
+    JButton create_room_btn = new JButton("방 만들기");
+    JButton join_room_btn = new JButton("방 참가");
     public JList<String> Room_list = new JList<>();
 
     // chat GUI Field
     public JFrame Chat_GUI = new JFrame();
-    public JPanel ChatPane = new JPanel();
-    public JTextField Chat_tf = new JTextField();
-    public JButton send_btn = new JButton("전송");
+    private JPanel ChatPane = new JPanel();
+    JTextField Chat_tf = new JTextField();
+    JButton send_btn = new JButton("전송");
     public JList<String> contact_user_list = new JList<>();
     public JTextArea Chatting_area = new JTextArea();
-    public JScrollPane scrollPane = new JScrollPane();
-    public JScrollPane scrollPane_1 = new JScrollPane();
+    private JScrollPane scrollPane = new JScrollPane();
+    private JScrollPane scrollPane_1 = new JScrollPane();
 
     // Register GUI Field
     public JFrame Rg_GUI = new JFrame();
-    public JPanel rg_Pane = new JPanel();
-    public JTextField rg_ID_tf = new JTextField();
-    public JPasswordField rg_pf_1 = new JPasswordField();
-    public JTextField rg_nickname_tf = new JTextField();
-    public JTextField rg_server_IP = new JTextField();
-    public JButton register_btn = new JButton("회원가입");
+    private JPanel rg_Pane = new JPanel();
+    JTextField rg_ID_tf = new JTextField();
+    JPasswordField rg_pf_1 = new JPasswordField();
+    JTextField rg_server_IP = new JTextField();
+    JButton register_btn = new JButton("회원가입");
 
     // GUI설정 메소드
-    public void Login_init() {
+    void Login_init() {
         Login_GUI.setTitle("Login Window");
         Login_GUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Login_GUI.setBounds(100, 100, 273, 332);
@@ -84,7 +82,7 @@ public class Client_GUI extends JFrame {
         Login_GUI.getContentPane().add(go_rg);
         Login_GUI.setVisible(true);
     }
-    public void F_R_init() {
+    void F_R_init() {
         F_R_GUI.setTitle("Friends&Room Window");
         F_R_GUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         F_R_GUI.setBounds(100, 100, 506, 367);
@@ -140,7 +138,7 @@ public class Client_GUI extends JFrame {
 
         scrollPane_1.setViewportView(contact_user_list);
     }
-    public void Register_init() {
+    void Register_init() {
         Rg_GUI.setTitle("Register Window");
         Rg_GUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Rg_GUI.setBounds(100, 100, 334, 388);
@@ -178,14 +176,6 @@ public class Client_GUI extends JFrame {
         rg_pf_1.setBounds(160, 214, 116, 21);
         rg_Pane.add(rg_pf_1);
 
-        JLabel lblNickname = new JLabel("Nickname");
-        lblNickname.setFont(new Font("Aparajita", Font.PLAIN, 20));
-        lblNickname.setBounds(12, 131, 108, 31);
-        rg_Pane.add(lblNickname);
-
-        rg_nickname_tf.setColumns(10);
-        rg_nickname_tf.setBounds(160, 135, 116, 21);
-        rg_Pane.add(rg_nickname_tf);
         Rg_GUI.setVisible(false);
 
         rg_server_IP.setColumns(10);
