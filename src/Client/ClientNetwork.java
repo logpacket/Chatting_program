@@ -114,8 +114,6 @@ public class ClientNetwork extends AbstractNetwork{
                 break;
         }
     }
-
-    @Override
     public void session() {
         Connect();
         send_message("connect/ok");

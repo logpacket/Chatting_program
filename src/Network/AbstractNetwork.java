@@ -2,7 +2,6 @@ package Network;
 
 import java.io.*;
 import java.net.Socket;
-import java.security.*;
 
 public abstract class AbstractNetwork{
     protected Socket socket;
@@ -13,7 +12,6 @@ public abstract class AbstractNetwork{
     protected DataInputStream dis;
     protected DataOutputStream dos;
     public abstract void in_message(String message);
-    public abstract void session();
     public abstract void IOError(IOException e);
     protected void Connect(){
         try{

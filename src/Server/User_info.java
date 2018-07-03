@@ -156,11 +156,6 @@ public class User_info extends AbstractNetwork implements Runnable{
     }
 
     @Override
-    public void session() {
-
-    }
-
-    @Override
     public void IOError(IOException e) {
         Server.textArea.append("스트림 에러"+e);
     }
